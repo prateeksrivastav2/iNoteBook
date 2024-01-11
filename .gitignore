@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+Backend/package-lock.json
+Backend/package.json
+Backend/node_modules
