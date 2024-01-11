@@ -68,3 +68,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# iNoteBook
+iNoteBook is a user-friendly note-taking application designed to help you organize your thoughts, ideas, and tasks seamlessly. With an intuitive interface and essential features, it offers a hassle-free way to manage your notes efficiently.
