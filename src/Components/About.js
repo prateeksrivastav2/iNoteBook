@@ -1,11 +1,21 @@
-import React from 'react';
+import React ,{useContext,useState} from 'react';
 import './About.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClosedCaptioning, faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import noteContext from "../context/notes/noteContext";
+import { useEffect } from 'react';
 
 
 const About = () => {
+    const context = useContext(noteContext);
+    let { isChecked } = context;
+    let [bgc, setBgc] = useState("F3F8FF");
+
+    useEffect(() => {
+        // console.log("isChecked");
+        setBgc(isChecked ? "7FC7D9" : "F3F8FF");
+    }, [isChecked]);
     const handleLinkedinClick = () => {
         window.open('https://www.linkedin.com/in/prateek-srivastav-9131aa21b/', '_blank');
     }
@@ -22,8 +32,8 @@ const About = () => {
     }
 
     return (
-        <div className="contain">
-            <div className="middle-container">
+        <div className="c" style={{ backgroundColor: `#${bgc}`,marginTop:'4%' }}>
+            <div className="middle-container" >
                 <div className="profile" >
                     <img
                         className="impf"

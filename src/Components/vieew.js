@@ -1,8 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext, useState } from 'react';
+import noteContext from '../context/notes/noteContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Vieew = (props) => {
+    const context = useContext(noteContext);
+    let { isChecked } = context;
+    let [bgc, setBgc] = useState("ecf0f3");
+
+    useEffect(() => {
+        setBgc(isChecked ? "E0F4FF" : "ecf0f3");
+    }, [isChecked]);
+
     const { no, hideVieew, isVieewVisible } = props;
     const ref = useRef(null);
 
@@ -18,21 +26,19 @@ const Vieew = (props) => {
                 Launch demo modal
             </button>
 
-            <div className="modal fade custom-modal" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style={{maxWidth:"5000px"}}>
+            <div className="modal fade custom-modal" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
-                    <div className="modal-content custom-modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLongTitle" style={{ 
-                               
+                    <div className="modal-content custom-modal-content" style={{ backgroundColor: `#${bgc}` }}>
+                        <div className="modal-header" style={{ backgroundColor: `#${bgc}` }}>
+                            <h5 className="modal-title" id="exampleModalLongTitle" style={{
                                 fontFamily: 'Sacramento, cursive',
                                 color: '#66BFBF',
                                 lineHeight: 1,
                                 fontSize: '1.625rem',
                                 margin: 'auto auto 0 auto',
-                                // marginLeft:'18%',
                                 textAlign: 'center',
-
-                                    marginBottom: '2%' }}>{no.title}</h5>
+                                marginBottom: '2%',
+                            }}>{no.title}</h5>
                         </div>
                         <div className="modal-body">
                             <h4 style={{
@@ -41,12 +47,11 @@ const Vieew = (props) => {
                                 color: '#80BCBD',
                                 lineHeight: 1,
                                 fontSize: '1.625rem',
-                                // margin: '50px auto 0 auto',
                                 marginBottom: '2%',
                             }}>Description</h4>
                             <div className="mb-3">
                                 <p style={{
-                                    fontFamily:'-moz-initial'
+                                    fontFamily: '-moz-initial'
                                 }}>{no.description}</p>
                             </div>
                             <h5 style={{
@@ -55,7 +60,6 @@ const Vieew = (props) => {
                                 color: '#80BCBD',
                                 lineHeight: 1,
                                 fontSize: '1.625rem',
-                                // margin: '50px auto 0 auto',
                                 marginBottom: '2%',
                             }}>Tag</h5>
                             <div className="mb-3">

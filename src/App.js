@@ -28,14 +28,9 @@ function App() {
     {/* <Router> */}
     <NoteState>
           <div className="App">
-            <Navbar />
-            {/* <div className='container' style={{ marginTop: "65px", marginBottom: "15px" }}> */}
+            <Navbar/>
               <Alert alert={alert} />
-            {/* </div> */}
             <Routes>
-              {/* <Route exact path="/" element={<NavBar />} /> */}
-              {/* <News setProgress={this.setProgress} pageSize={5} country="in" category="Science"/> */}
-              {/* <Route exact path="/" element={<News setProgress={this.setProgress} key="General" pageSize={6} country="in" category="General" />} /> */}
               <Route exact path="/About" element={<About/>} />
               <Route exact path="/" element={<Home showAlert={showAlert}/>} />
               <Route exact path="/login" element={<Login showAlert={showAlert} />} />

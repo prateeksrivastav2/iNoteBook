@@ -6,6 +6,7 @@ const Edit = (props) => {
     const navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, editNote } = context;
+    const { isChecked } = context;
     const [note, setNote] = useState({ title: "", description: "", tag: "" });
     const { id } = useParams();
 
@@ -20,6 +21,13 @@ const Edit = (props) => {
             });
         }
     }, [id, notes]);
+    let [bg, setBg] = useState("F3F8FF");
+    const [bgc, setBgc] = useState("ecf0f3");
+
+    useEffect(() => {
+        setBgc(isChecked ? "E0F4FF" : "ecf0f3");
+        setBg(isChecked ? "7FC7D9" : "F3F8FF");
+    }, [isChecked]);
 
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value });
@@ -31,9 +39,9 @@ const Edit = (props) => {
         props.showAlert("Note Updated Successfully", "primary");
         navigate('/');
     }
-    const onback = (e) => {
+
+    const onBack = (e) => {
         e.preventDefault();
-        // updateNote(note);
         props.showAlert("No Changes made", "primary");
         navigate('/');
     }
@@ -44,12 +52,14 @@ const Edit = (props) => {
     }
 
     return (
-        <div>
-            
+        <div style={{backgroundColor:`#${bg}`,paddingTop:'5%'}}>
             <div style={containerStyle}>
                 <div style={formContainerStyle}>
-                    <div style={formStyle}>
-                    <label htmlFor="etitle" className="form-label" style={{fontSize:'1.8rem'}}>Edit Your Note</label>
+                    <div style={{
+                        ...formStyle,
+                        backgroundColor: `#${bgc}`,
+                    }}>
+                        <label htmlFor="etitle" className="form-label" style={{ fontSize: '1.8rem' }}>Edit Your Note</label>
                         <div className="mb-3">
                             <label htmlFor="etitle" className="form-label">Title</label>
                             <input type="text" className="form-control" id="etitle" name="title" aria-describedby="emailHelp" value={note.title} onChange={onChange} minLength={5} required placeholder='Main Idea' />
@@ -63,11 +73,11 @@ const Edit = (props) => {
                             <input type="text" className="form-control" id="etag" name="tag" value={note.tag} placeholder='Category' onChange={onChange} />
                         </div>
                         <button disabled={note.description.length < 10 || note.title.length < 5} type="submit" className="btn btn-primary" onClick={onSubmit}>Submit</button>
-                        <button  type="submit" className="btn btn-primary " onClick={onback} style={{marginLeft:"80%"}}>Back</button>
+                        <button type="submit" className="btn btn-primary " onClick={onBack} style={{ marginLeft: "70%" }}>Back</button>
                     </div>
                 </div>
                 <div style={imageContainerStyle}>
-                    <img src="https://media.giphy.com/media/SuHqIFtD9gbBQXoxt3/giphy.gif" alt="" style={imageStyle} />
+                    <img src="https://media.giphy.com/media/SuHqIFtD9gbBQXoxt3/giphy.gif" alt="" style={{...imageStyle,backgroundColor:`#${bgc}`}} />
                 </div>
             </div>
         </div>
@@ -81,6 +91,8 @@ const containerStyle = {
     justifyContent: 'space-between',
     maxWidth: '1200px',
     margin: '20px auto 0',
+    // marginTop:'5%'
+    
 };
 
 const formContainerStyle = {
@@ -93,7 +105,6 @@ const formStyle = {
     minHeight: '425px',
     margin: '20px auto',
     padding: '40px',
-    backgroundColor: '#ecf0f3',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 };
@@ -108,6 +119,6 @@ const imageStyle = {
     width: '75%',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    maxHeight:"83%",
-    backgroundColor: '#ecf0f3'
+    maxHeight: "83%",
+   
 };

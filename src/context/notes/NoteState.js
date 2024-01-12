@@ -5,6 +5,7 @@ import noteContext from "./noteContext";
 // useContext use
 const NoteState = (props) => {
     const host = "http://localhost:3001";
+    const [isChecked, setIsChecked] = useState(false);
     const notesInitial = []
  
     const [notes, setNotes] = useState(notesInitial);
@@ -95,7 +96,7 @@ const NoteState = (props) => {
     }
     return (
         <>
-            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes}}>
+            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes,setIsChecked,isChecked}}>
                 {/* update()}> */}
                 {props.children}
             </noteContext.Provider>

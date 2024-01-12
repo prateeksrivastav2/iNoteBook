@@ -8,11 +8,13 @@ import Vieew from './vieew';
 const Notes = (props) => {
     const navigate = useNavigate();
     const context = useContext(noteContext);
+    
     const { notes, getNotes } = context;
+    let { isChecked } = context;
     const { showAlert } = props;
     const [no, setNo] = useState({ title: '', description: '', tag: '' });
     const [isVieewVisible, setIsVieewVisible] = useState(false);
-
+    let DM = isChecked ? "427D9D" : "11999E";
     useEffect(() => {
         if (localStorage.getItem('token')) {
             getNotes();
@@ -20,6 +22,9 @@ const Notes = (props) => {
             navigate('/login');
         }
     }, [navigate, getNotes]);
+    useEffect(() => {
+       DM = isChecked ? "427D9D" : "11999E";
+    }, )
 
     const updateNote = (note) => {
         navigate(`/edit-note/${note._id}`);
@@ -36,12 +41,12 @@ const Notes = (props) => {
     };
 
     return (
-        <div>
-            <AaddNote showAlert={showAlert} />
-            {isVieewVisible && <Vieew no={no} handleview={handleview} hideVieew={hideVieew} isVieewVisible={isVieewVisible}/>}
-            <div className='row my-3'>
-                <h3 style={{ marginTop: "2%" ,textAlign:'center'}}>Your Notes</h3>
-                <div className="container" style={{textAlign:'center'}}>
+        <div >
+            <AaddNote showAlert={showAlert}  />
+            {isVieewVisible && <Vieew no={no} handleview={handleview} hideVieew={hideVieew} isVieewVisible={isVieewVisible} />}
+            <div className='row my-0' style={{marginBottom:'0px'}}>
+                <h3 style={{ marginTop: "2%", textAlign: 'center' ,color:`#${DM}`}}>Your Notes</h3>
+                <div className="coner" style={{ textAlign: 'center' }}>
                     {notes && notes.length === 0 && 'No notes to display'}
                 </div>
                 {Array.isArray(notes) &&

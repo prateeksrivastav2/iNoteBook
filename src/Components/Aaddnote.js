@@ -1,11 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import noteContext from '../context/notes/noteContext';
 
 const Aaddnote = (props) => {
   const context = useContext(noteContext);
+    let { isChecked } = context;
+    let [bgc, setBgc] = useState("ecf0f3");
+
+    useEffect(() => {
+        // console.log("isChecked");
+        setBgc(isChecked ? "E0F4FF" : "ecf0f3");
+    }, [isChecked]);
+  // style={{backgroundColor:"#E0F4FF"}}
   const { addNote } = context;
   const [note, setNote] = useState({ title: '', description: '', tag: '' });
-
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
@@ -18,23 +25,9 @@ const Aaddnote = (props) => {
   };
 
   return (
-    <>
-      <h3
-        style={{
-          textAlign:'center',
-          width: '100%',
-          display: 'block',
-          border: 'none',
-          outline: 'none',
-          background: 'none',
-          fontSize: '1.8rem',
-          color: '#666',
-          padding: '10px 15px 10px 10px',
-        }}
-      >
-        Add a Note
-      </h3>
-      <form>
+    <div >
+     
+      <form style={{paddingTop:'5%'}}>
         <div
           className="f"
           style={{
@@ -42,11 +35,29 @@ const Aaddnote = (props) => {
             minHeight: '425px',
             margin: '20px auto',
             padding: '40px',
-            backgroundColor: '#ecf0f3',
+            backgroundColor: `#${bgc}`,
             borderRadius: '10px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           }}
         >
+          <h3
+                style={{
+                    textAlign: 'center',
+                    width: '100%',
+                    display: 'block',
+                    border: 'none',
+                    outline: 'none',
+                    background: 'none',
+                    fontSize: '1.8rem',
+                    color: '#11999E',
+                    // padding: '10px 15px 10px 10px',
+                    // marginTop: '6%'
+                    marginBottom:'3%',
+                    // paddingTop:'3.5%'
+                }}
+            >
+                Add a Note
+            </h3>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
               Title
@@ -104,7 +115,7 @@ const Aaddnote = (props) => {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
