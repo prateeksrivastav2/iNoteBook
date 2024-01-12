@@ -77,7 +77,7 @@ router.put('/updatenote/:id', fetchuser,
 router.delete('/deletenote/:id', fetchuser,
     async (req, res) => {
 
-        const { title, description, tag } = req.body;
+        // const { title, description, tag } = req.body;
 
         // check for note that to deleted is present or not 
         try {

@@ -4,10 +4,10 @@ import { useNavigate ,Link} from 'react-router-dom';
 const Login = (props) => {
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ email: "", password: "" });
-
+    const Base_URL="http://localhost:3001";
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
-        const response = await fetch("http://localhost:3001/api/auth/login", {
+        const response = await fetch(`${Base_URL}/api/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

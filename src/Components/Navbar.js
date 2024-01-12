@@ -1,22 +1,29 @@
-import React, { Component,useEffect } from 'react'
+import React, { Component,useEffect,useState } from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route, Routes, Link ,useLocation, useNavigate} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfo} from '@fortawesome/free-solid-svg-icons';
+import Warning from './warning';
 // import { faLinkedin, faGithub ,faInfo} from '@fortawesome/free-brands-svg-icons';
 
 const NavBar =()=>{
     let location= useLocation();
     const navigate=useNavigate();
+    const [isVieewVisible, setIsVieewVisible] = useState(false);
     const handlelogout=()=>{
          localStorage.removeItem('token');
-         navigate('/login')
+         navigate('/About')
     }
-    useEffect(() => {
-        return () => {
-           // console.log(location)
-        };
-    }, [location])
+   
+   
+    const handleout = () => {
+        // setNo({ title: note.title, description: note.description, tag: note.tag });
+        setIsVieewVisible(true);
+    };
+    const hideleout = () => {
+        // setNo({ title: note.title, description: note.description, tag: note.tag });
+        setIsVieewVisible(false);
+    };
         return (
             <div >
                 <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style={{ maxHeight: "55px" }} >
@@ -37,10 +44,11 @@ const NavBar =()=>{
                             {!localStorage.getItem('token')? <form className="d-flex">
                                 <Link className="btn btn-primary mx-1" to="/login" role='button'>Login</Link>
                                 <Link className="btn btn-primary mx-1" to="/ssignup" role='button'>Signup</Link>
-                            </form>:<button className="btn btn-primary mx-1" onClick={handlelogout} role='button'>Logout</button>}
+                            </form>:<button className="btn btn-primary mx-1" onClick={handleout} role='button'>Logout</button>}
                         </div>
                     </div>
                 </nav>
+                {isVieewVisible&&<Warning isVieewVisible={isVieewVisible} hideleout={hideleout} handlelogout={handlelogout}/>}
             </div>
         )
     

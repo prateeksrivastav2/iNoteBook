@@ -2,6 +2,7 @@ const connectToMongo=require('./db');
 const express = require('express')
 var cors=require('cors');
 const app = express()
+const port=process.env.port||3001
 connectToMongo();
 // respond with "hello world" when a GET request is made to the homepage
 app.use(cors());
@@ -12,8 +13,7 @@ app.use('/api/notes',require('./routes/notes'))
 
 
 
-
 app.post('/', (req, res) => {
   res.send('hello world')
 });
-app.listen(3001);
+app.listen(port);

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 const Ssignup = (props) => {
+    const Base_URL="http://localhost:3001";
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const { name, email, password, cpassword } = credentials;
@@ -15,7 +16,7 @@ const Ssignup = (props) => {
             navigate('/ssignup')
         }
         else {
-            const response = await fetch("http://localhost:3001/api/auth/createuser", {
+            const response = await fetch(`${Base_URL}/api/auth/createuser`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -182,4 +183,4 @@ const Ssignup = (props) => {
     )
 }
 
-export default Ssignup
+export default Ssignup;

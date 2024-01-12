@@ -107,7 +107,7 @@ router.post('/createuser', [
 router.post('/getuser',fetchuser,
 async (req, res) => {
     try {
-        userId=req.user.id;
+        const userId=req.user.id;
         const user=await User.findById(userId).select("-password");
         //console.log(user);
         res.send(user);
