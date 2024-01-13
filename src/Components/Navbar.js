@@ -1,7 +1,7 @@
-import React, { useState, useEffect,useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import Warning from './warning';
 import noteContext from "../context/notes/noteContext";
 // import { faLinkedin, faGithub ,faInfo} from '@fortawesome/free-brands-svg-icons';
@@ -39,12 +39,23 @@ const NavBar = () => {
     };
     return (
         <div >
-            <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={{ maxHeight: "55px", backgroundColor: `#${navcolor}` ,marginBottom:'0px'}} >
+            <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={{ maxHeight: "55px", backgroundColor: `#${navcolor}`, marginBottom: '0px' }} >
                 <div className="container-fluid">
                     <Link className="navbar-brand active" to="/" style={{ marginLeft: '35px' }}><FontAwesomeIcon icon={faInfo} size='2x' />NoteBook</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button
+                        className="navbar-toggler custom-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        style={{ backgroundColor: 'B4D4FF' }}
+                    >
+
                         <span className="navbar-toggler-icon"></span>
                     </button>
+
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-3">
                             <li className="nav-item" style={{ marginLeft: '20px', marginRight: "30px" }}>
@@ -55,10 +66,11 @@ const NavBar = () => {
                             </li>
                         </ul>
                         {/* <button className="btn btn-primary mx-1"  role='button'>Login</button> */}
-                        <div className="form-check form-switch mx-3">
-                            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={isChecked} onChange={handleToggle} />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{ color: `${DM}` }}>Dark Mode</label>
+                        <div className="mx-3">
+                            {isChecked ? <FontAwesomeIcon icon={faSun} style={{ cursor: 'pointer' }} size='1x' onClick={handleToggle}/>
+                                : <FontAwesomeIcon icon={faMoon} style={{ cursor: 'pointer' }} size='1x' onClick={handleToggle}/>}
                         </div>
+
                         {!localStorage.getItem('token') ? <form className="d-flex">
                             <Link className="btn btn-primary mx-1" to="/login" role='button' style={{ color: `${DM}` }}>Login</Link>
                             <Link className="btn btn-primary mx-1" to="/ssignup" role='button' style={{ color: `${DM}` }}>Signup</Link>

@@ -45,7 +45,7 @@ const Notes = (props) => {
             <AaddNote showAlert={showAlert}  />
             {isVieewVisible && <Vieew no={no} handleview={handleview} hideVieew={hideVieew} isVieewVisible={isVieewVisible} />}
             <div className='row my-0' style={{marginBottom:'0px'}}>
-                <h3 style={{ marginTop: "2%", textAlign: 'center' ,color:`#${DM}`}}>Your Notes</h3>
+                <h3 style={{ marginTop: "10%", textAlign: 'center' ,color:`#${DM}`}}>Your Notes</h3>
                 <div className="coner" style={{ textAlign: 'center' }}>
                     {notes && notes.length === 0 && 'No notes to display'}
                 </div>

@@ -5,20 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Vieew = (props) => {
     const context = useContext(noteContext);
     let { isChecked } = context;
-    let [bgc, setBgc] = useState("ecf0f3");
-
-    useEffect(() => {
-        setBgc(isChecked ? "E0F4FF" : "ecf0f3");
-    }, [isChecked]);
-
+    // const [bgc, setbgc] = useState("E0F4FF");    
     const { no, hideVieew, isVieewVisible } = props;
     const ref = useRef(null);
-
+    let [bgc, setBgc] = useState("F3F8FF");
+    useEffect(() => {
+        // console.log("isChecked");
+        setBgc(isChecked ? "7FC7D9" : "F3F8FF");
+    }, [isChecked]);
     useEffect(() => {
         if (isVieewVisible) {
             ref.current.click();
         }
-    }, [isVieewVisible]);
+    }, [isVieewVisible,isChecked]);
 
     return (
         <div onClick={hideVieew}>
@@ -27,8 +26,8 @@ const Vieew = (props) => {
             </button>
 
             <div className="modal fade custom-modal" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content custom-modal-content" style={{ backgroundColor: `#${bgc}` }}>
+                <div className="modal-dialog custom-modal-dialog" role="document">
+                    <div className="modal-content custom-modal-content" style={{ backgroundColor: `#${bgc}` ,color:'black'}}>
                         <div className="modal-header" style={{ backgroundColor: `#${bgc}` }}>
                             <h5 className="modal-title" id="exampleModalLongTitle" style={{
                                 fontFamily: 'Sacramento, cursive',

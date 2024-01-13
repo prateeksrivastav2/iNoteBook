@@ -1,18 +1,18 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import noteContext from '../context/notes/noteContext';
 
 const Aaddnote = (props) => {
   const context = useContext(noteContext);
-    let { isChecked } = context;
-    let [bgc, setBgc] = useState("ecf0f3");
+  let { isChecked } = context;
+  let [bgc, setBgc] = useState("ecf0f3");
 
-    useEffect(() => {
-        // console.log("isChecked");
-        setBgc(isChecked ? "E0F4FF" : "ecf0f3");
-    }, [isChecked]);
-  // style={{backgroundColor:"#E0F4FF"}}
+  useEffect(() => {
+    setBgc(isChecked ? "B4D4FF" : "ecf0f3");
+  }, [isChecked]);
+
   const { addNote } = context;
   const [note, setNote] = useState({ title: '', description: '', tag: '' });
+
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
@@ -25,11 +25,10 @@ const Aaddnote = (props) => {
   };
 
   return (
-    <div >
-     
-      <form style={{paddingTop:'5%'}}>
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <form style={{ width: '80%' ,paddingTop:'15%'}}>
         <div
-          className="f"
+          className="f mx-auto"
           style={{
             maxWidth: '90%',
             minHeight: '425px',
@@ -41,23 +40,20 @@ const Aaddnote = (props) => {
           }}
         >
           <h3
-                style={{
-                    textAlign: 'center',
-                    width: '100%',
-                    display: 'block',
-                    border: 'none',
-                    outline: 'none',
-                    background: 'none',
-                    fontSize: '1.8rem',
-                    color: '#11999E',
-                    // padding: '10px 15px 10px 10px',
-                    // marginTop: '6%'
-                    marginBottom:'3%',
-                    // paddingTop:'3.5%'
-                }}
-            >
-                Add a Note
-            </h3>
+            style={{
+              textAlign: 'center',
+              width: '100%',
+              display: 'block',
+              border: 'none',
+              outline: 'none',
+              background: 'none',
+              fontSize: '1.8rem',
+              color: '#11999E',
+              marginBottom: '3%',
+            }}
+          >
+            Add a Note
+          </h3>
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
               Title
