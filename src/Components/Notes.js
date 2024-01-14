@@ -4,6 +4,8 @@ import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AaddNote from './Aaddnote'
 import Vieew from './vieew';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilterCircleXmark, faFilter } from '@fortawesome/free-solid-svg-icons';
 
 const Notes = (props) => {
     const navigate = useNavigate();
@@ -17,14 +19,25 @@ const Notes = (props) => {
     const [filt, setFilt] = useState(false);
     const [isVieewVisible, setIsVieewVisible] = useState(false);
     let DM = isChecked ? "427D9D" : "11999E";
+    let [bgc, setBgc] = useState("secondary");
+     let navcolor = isChecked ? "light" : "secondary";
+    // let DM = isChecked ? "black" : "white";
+    useEffect(() => {
+        navcolor = isChecked ? "light" : "secondary";
+        // DM = isChecked ? "black" : "white";
+    }, [isChecked]);
 
     useEffect(() => {
-        if (filt===false&&localStorage.getItem('token')) {
+        // console.log("isChecked");
+        setBgc(isChecked ? "7FC7D9" : "F3F8FF");
+    }, [isChecked]);
+    useEffect(() => {
+        if (filt === false && localStorage.getItem('token')) {
             // console.log("nfilter");
             getNotes();
-        } else if(filt===true){
+        } else if (filt === true) {
             // console.log("filter");
-            filtergetNotes(searchtit.stitle,notes);
+            filtergetNotes(searchtit.stitle, notes);
         }
         else {
             navigate('/login');
@@ -38,19 +51,13 @@ const Notes = (props) => {
     const handlefilter = (e) => {
         e.preventDefault();
         setFilt(true);
-        // console.log(filter);
-        // filtergetNotes(searchtit.stitle,notes);
-        console.log("opoo");
-        // console.log(notes);
+
 
     }
     const removefilter = (e) => {
         e.preventDefault();
         setFilt(false);
-        // console.log(filter);
-        // filtergetNotes(searchtit.stitle,notes);
-        console.log("opoo");
-        // console.log(notes);
+
 
     }
 
@@ -83,10 +90,14 @@ const Notes = (props) => {
                 </div>
                 <div>
                     <form onSubmit={handlefilter}>
-                        <input type="text" name="stitle" onChange={onchange} />
-                        <button type='submit'>Filter</button>
+                        <div className="form-control" style={{ backgroundColor: `#${bgc}`, border: '0' }}>
+                            <div style={{ display: 'flex',marginLeft:'70%',marginBottom:'2%'}}>
+                                <input className="form-control" type="text" name="stitle" placeholder='Search Notes...' onChange={onchange} style={{ width: '70%',backgroundColor:'#ecf0f3' }} />
+                               { !filt?<FontAwesomeIcon icon={faFilter} className={`text-${navcolor}`} onClick={handlefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />
+                               : <FontAwesomeIcon icon={faFilterCircleXmark}  className={`text-${navcolor}`} onClick={removefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />}
+                            </div>
+                        </div>
                     </form>
-                        <button onClick={removefilter}>rFilter</button>
                 </div>
                 {Array.isArray(notes) &&
                     notes.map((note) => (

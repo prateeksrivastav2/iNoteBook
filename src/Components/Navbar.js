@@ -67,7 +67,7 @@ const NavBar = () => {
                         </ul>
                         {/* <button className="btn btn-primary mx-1"  role='button'>Login</button> */}
                         <div className="mx-3">
-                            {isChecked ? <FontAwesomeIcon icon={faSun} style={{ cursor: 'pointer' }} size='1x' onClick={handleToggle}/>
+                            {isChecked ? <FontAwesomeIcon icon={faSun} className="text-light mx-1"style={{ cursor: 'pointer' }} size='1x' onClick={handleToggle}/>
                                 : <FontAwesomeIcon icon={faMoon} style={{ cursor: 'pointer' }} size='1x' onClick={handleToggle}/>}
                         </div>
 
