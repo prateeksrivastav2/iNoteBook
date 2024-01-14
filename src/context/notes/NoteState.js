@@ -6,9 +6,8 @@ import noteContext from "./noteContext";
 const NoteState = (props) => {
     const host = "http://localhost:3001";
     const [isChecked, setIsChecked] = useState(false);
-    const notesInitial = []
- 
-    const [notes, setNotes] = useState(notesInitial);
+    let notesInitial = [];
+    let [notes, setNotes] = useState(notesInitial);
     const getNotes = async () => {
         
             let response = await fetch(`${host}/api/notes/fetchallnotes`,{
@@ -22,7 +21,42 @@ const NoteState = (props) => {
         });
         const json=await response.json();
         //console.log("getNnotes==>",json);
+
        setNotes(json);
+        
+    }
+    // filter notes
+    const filtergetNotes = async (title) => {
+            //  console.log("here");
+            console.log(title)
+            let response = await fetch(`${host}/api/notes/fetchallnotes`,{
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('token')
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // body: JSON.stringify({ title: title, description: description, tag: tag }),
+        });
+        if(!response.ok){
+            alert("Error in filtering the data!");
+            throw response;
+            }
+        const json=await response.json();
+        
+        const temp=[];
+        for (let index = 0; index < notes.length; index++) {
+            const element = notes[index];
+            if (element.title.includes(title)) {
+                // console.log("ok");
+                temp.push(element);
+            }
+        }
+        console.log("filtered Notes=====>",temp);
+
+        //console.log("getNnotes==>",json);
+       setNotes(temp);
+       console.log(notes);
         
     }
     // add a note 
@@ -96,7 +130,7 @@ const NoteState = (props) => {
     }
     return (
         <>
-            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes,setIsChecked,isChecked}}>
+            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes,setIsChecked,isChecked,filtergetNotes}}>
                 {/* update()}> */}
                 {props.children}
             </noteContext.Provider>
