@@ -85,9 +85,6 @@ const Notes = (props) => {
             {isVieewVisible && <Vieew no={no} handleview={handleview} hideVieew={hideVieew} isVieewVisible={isVieewVisible} />}
             <div className='row my-0' style={{ marginBottom: '0px' }}>
                 <h3 style={{ marginTop: "10%", textAlign: 'center', color: `#${DM}` }}>Your Notes</h3>
-                <div className="coner" style={{ textAlign: 'center' }}>
-                    {notes && notes.length === 0 && 'No notes to display'}
-                </div>
                 <div>
                     <form onSubmit={handlefilter}>
                         <div className="form-control" style={{ backgroundColor: `#${bgc}`, border: '0' }}>
@@ -99,6 +96,20 @@ const Notes = (props) => {
                         </div>
                     </form>
                 </div>
+                <div className="coner" style={{ textAlign: 'center' ,marginBottom:'1%'}}>
+                    {notes && notes.length === 0 && 'No notes to display'}
+                </div>
+                {/* <div>
+                    <form onSubmit={handlefilter}>
+                        <div className="form-control" style={{ backgroundColor: `#${bgc}`, border: '0' }}>
+                            <div style={{ display: 'flex',marginLeft:'70%',marginBottom:'2%'}}>
+                                <input className="form-control" type="text" name="stitle" placeholder='Search Notes...' onChange={onchange} style={{ width: '70%',backgroundColor:'#ecf0f3' }} />
+                               { !filt?<FontAwesomeIcon icon={faFilter} className={`text-${navcolor}`} onClick={handlefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />
+                               : <FontAwesomeIcon icon={faFilterCircleXmark}  className={`text-${navcolor}`} onClick={removefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />}
+                            </div>
+                        </div>
+                    </form>
+                </div> */}
                 {Array.isArray(notes) &&
                     notes.map((note) => (
                         <Noteitem key={note._id} updateNote={updateNote} showAlert={showAlert} note={note} handleview={handleview} />

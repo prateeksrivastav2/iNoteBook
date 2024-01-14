@@ -7,7 +7,7 @@ const Aaddnote = (props) => {
   let [bgc, setBgc] = useState("ecf0f3");
 
   useEffect(() => {
-    setBgc(isChecked ? "B4D4FF" : "ecf0f3");
+    setBgc(isChecked ? "DCF2F1" : "ecf0f3");
   }, [isChecked]);
 
   const { addNote } = context;

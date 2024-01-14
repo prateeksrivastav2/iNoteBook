@@ -25,7 +25,7 @@ const Edit = (props) => {
     const [bgc, setBgc] = useState("ecf0f3");
 
     useEffect(() => {
-        setBgc(isChecked ? "B4D4FF" : "ecf0f3");
+        setBgc(isChecked ? "DCF2F1" : "ecf0f3");
         setBg(isChecked ? "7FC7D9" : "F3F8FF");
     }, [isChecked]);
 
