@@ -51,8 +51,6 @@ const Notes = (props) => {
     const handlefilter = (e) => {
         e.preventDefault();
         setFilt(true);
-
-
     }
     const removefilter = (e) => {
         e.preventDefault();

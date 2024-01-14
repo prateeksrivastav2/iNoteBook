@@ -26,39 +26,37 @@ const NoteState = (props) => {
         
     }
     // filter notes
-    const filtergetNotes = async (title) => {
-            //  console.log("here");
-            console.log(title)
-            let response = await fetch(`${host}/api/notes/fetchallnotes`,{
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('token')
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            // body: JSON.stringify({ title: title, description: description, tag: tag }),
-        });
-        if(!response.ok){
-            alert("Error in filtering the data!");
-            throw response;
+    const filtergetNotes = async (title, notes) => {
+        try {
+            // console.log(title);
+            let response = await fetch(`${host}/api/notes/fetchallnotes`, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": localStorage.getItem('token')
+                },
+            });
+    
+            if (!response.ok) {
+                alert("Error in filtering the data!");
+                throw response;
             }
-        const json=await response.json();
-        
-        const temp=[];
-        for (let index = 0; index < notes.length; index++) {
-            const element = notes[index];
-            if (element.title.includes(title)) {
-                // console.log("ok");
-                temp.push(element);
-            }
+    
+            const json = await response.json();
+            const lwcst=title.toLowerCase();
+            const temp = notes.filter(element => element.title.toLowerCase().includes(lwcst));
+    
+            // console.log("filtered Notes=====>", temp);
+    
+            setNotes(temp);
+            // console.log(notes);
+    
+        } catch (error) {
+            console.error("Error filtering note:", error.message);
+            // Handle error
         }
-        console.log("filtered Notes=====>",temp);
-
-        //console.log("getNnotes==>",json);
-       setNotes(temp);
-       console.log(notes);
-        
     }
+    
     // add a note 
     const addNote = async (title, description, tag) => {
         try {
