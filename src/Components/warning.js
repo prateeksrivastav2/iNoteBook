@@ -4,8 +4,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 const Warning = (props) => {
-   
-   
     const {isVieewVisible ,hideleout, handlelogout } = props;
     const ref = useRef(null);
 

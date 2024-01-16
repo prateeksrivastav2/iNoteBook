@@ -4,6 +4,7 @@ const UserSchema= new Schema({
     name:{type:String,required:[true,"Name is required"]},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:[true,"password is required"]},
+    
     date:{
         type:Date,
         default:Date.now

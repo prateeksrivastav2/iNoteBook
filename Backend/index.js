@@ -2,7 +2,7 @@ const connectToMongo=require('./db');
 const express = require('express')
 var cors=require('cors');
 const app = express()
-const port=process.env.port||3001
+const port=process.env.PORT||3001
 connectToMongo();
 // respond with "hello world" when a GET request is made to the homepage
 app.use(cors());

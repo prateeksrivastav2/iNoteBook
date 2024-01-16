@@ -82,7 +82,6 @@ router.post('/createuser', [
         }
         const data = {
            user:{
-
             id:user._id,
            }
         }
