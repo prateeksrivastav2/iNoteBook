@@ -5,7 +5,9 @@ import noteContext from "./noteContext";
 // useContext use
 const NoteState = (props) => {
     const host = "http://localhost:3001";
+    // const host = "https://inotebook-backend-1nhc.onrender.com";
     const [isChecked, setIsChecked] = useState(false);
+    const [isCollapsed, setCollapsed] = useState(true);
     let notesInitial = [];
     let [notes, setNotes] = useState(notesInitial);
     const getNotes = async () => {
@@ -128,7 +130,7 @@ const NoteState = (props) => {
     }
     return (
         <>
-            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes,setIsChecked,isChecked,filtergetNotes}}>
+            <noteContext.Provider value={{ notes, addNote, deleteNote, editNote ,getNotes,setIsChecked,isChecked,filtergetNotes,isCollapsed}}>
                 {/* update()}> */}
                 {props.children}
             </noteContext.Provider>

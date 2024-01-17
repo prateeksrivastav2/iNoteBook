@@ -87,7 +87,7 @@ const Notes = (props) => {
                     <form onSubmit={handlefilter}>
                         <div className="form-control" style={{ backgroundColor: `#${bgc}`, border: '0' }}>
                             <div style={{ display: 'flex',marginLeft:'70%',marginBottom:'2%'}}>
-                                <input className="form-control" type="text" name="stitle" placeholder='Search Notes...' onChange={onchange} style={{ width: '70%',backgroundColor:'#ecf0f3' }} />
+                                <input className="form-control" type="text" name="stitle" placeholder='Search Notes...' onChange={onchange} style={{ maxWidth:'fit-content',backgroundColor:'#ecf0f3' }} />
                                { !filt?<FontAwesomeIcon icon={faFilter} className={`text-${navcolor}`} onClick={handlefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />
                                : <FontAwesomeIcon icon={faFilterCircleXmark}  className={`text-${navcolor}`} onClick={removefilter} size='2x' style={{ cursor: 'pointer', marginLeft: '5%' }} />}
                             </div>
