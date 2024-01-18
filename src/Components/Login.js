@@ -17,8 +17,8 @@ const Login = (props) => {
 
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ email: "", password: "" });
-    const Base_URL = "http://localhost:3001";
-    // const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
+    // const Base_URL = "http://localhost:3001";
+    const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
 
     const handleSubmit = async (e) => {
         e.preventDefault();

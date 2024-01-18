@@ -4,8 +4,8 @@ import { useState } from "react";
 import noteContext from "./noteContext";
 // useContext use
 const NoteState = (props) => {
-    const host = "http://localhost:3001";
-    // const host = "https://inotebook-backend-1nhc.onrender.com";
+    // const host = "http://localhost:3001";
+    const host = "https://inotebook-backend-1nhc.onrender.com";
     const [isChecked, setIsChecked] = useState(false);
     const [isCollapsed, setCollapsed] = useState(true);
     let notesInitial = [];

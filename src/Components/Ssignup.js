@@ -14,8 +14,8 @@ const Ssignup = (props) => {
         setB(isChecked ? "#7FC7D9" : "#fff");
         setBgc(isChecked ? "7FC7D9" : "F3F8FF");
     }, [isChecked]);
-    const Base_URL = "http://localhost:3001";
-    // const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
+    // const Base_URL = "http://localhost:3001";
+    const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const { name, email, password, cpassword } = credentials;

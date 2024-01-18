@@ -74,12 +74,12 @@ const NavBar = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-3">
                             <li className="nav-item" style={{ marginLeft: '20px', marginRight: '30px' }}>
                                 <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" to="/">
-                                    <h5>Home</h5>
+                                   Home
                                 </Link>
                             </li>
                             <li className="nav-item" style={{ marginRight: '15px' }}>
                                 <Link className={`nav-link ${location.pathname === '/About' ? 'active' : ''}`} to="/About">
-                                    <h5>About us</h5>
+                                    About Us
                                 </Link>
                             </li>
                         </ul>
