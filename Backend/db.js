@@ -1,14 +1,21 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const connectToMongo = async () => {
-    // mongoose.connect('mongodb://127.0.0.1:27017/inoteBook');
     // console.log(process.env);
 
-    const url=process.env.MONGODB_URI;
+    const url = process.env.MONGODB_URI;
     // console.log(url);
     try {
+        mongoose.connect('mongodb://127.0.0.1:27017/inoteBookooo');
+        // const mongoose = require('mongoose');
+
+        // mongoose.connect('mongodb://127.0.0.1:27017/minor-proj-db');
+
+        const db = mongoose.connection;
+
+        db.on('error', console.error.bind(console, 'Error starting database'));
         // mongoose.connect('mongodb://127.0.0.1:27017/inoteBook');
-        await mongoose.connect(url);
+        // await mongoose.connect(url);
         console.log('Successfully started database');
     }
     // const db = mongoose.connection;

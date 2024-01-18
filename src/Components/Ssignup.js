@@ -14,8 +14,8 @@ const Ssignup = (props) => {
         setB(isChecked ? "#7FC7D9" : "#fff");
         setBgc(isChecked ? "7FC7D9" : "F3F8FF");
     }, [isChecked]);
-    // const Base_URL = "http://localhost:3001";
-    const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
+    const Base_URL = "http://localhost:3001";
+    // const Base_URL = "https://inotebook-backend-1nhc.onrender.com";
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const { name, email, password, cpassword } = credentials;
@@ -136,7 +136,7 @@ const Ssignup = (props) => {
                                 name='email'
                                 value={credentials.email}
                                 type="email" className="form my-2"
-                                id="inputPassword4" placeholder="Email"
+                                id="inputPassword" placeholder="Email"
                             />
                         </div>
                         <div style={{
@@ -184,7 +184,7 @@ const Ssignup = (props) => {
                                 name='cpassword'
                                 value={credentials.cpassword}
                                 type="text" className="form my-2"
-                                id="inputcPassword4" placeholder="Confirm Password"
+                                id="inputcPassword5" placeholder="Confirm Password"
                                 minLength={5} required
                             />
                         </div>
