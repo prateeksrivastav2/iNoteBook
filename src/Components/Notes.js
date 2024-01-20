@@ -17,6 +17,7 @@ const Notes = (props) => {
     const [no, setNo] = useState({ title: '', description: '', tag: '' });
     const [searchtit, setSearchtit] = useState({ stitle: '' });
     const [filt, setFilt] = useState(false);
+    const [fetc, setFetc] = useState(false);
     const [isVieewVisible, setIsVieewVisible] = useState(false);
     let DM = isChecked ? "427D9D" : "11999E";
     let [bgc, setBgc] = useState("secondary");
@@ -26,23 +27,23 @@ const Notes = (props) => {
         navcolor = isChecked ? "light" : "secondary";
         // DM = isChecked ? "black" : "white";
     }, [isChecked]);
-
     useEffect(() => {
         // console.log("isChecked");
         setBgc(isChecked ? "7FC7D9" : "F3F8FF");
     }, [isChecked]);
     useEffect(() => {
-        if (filt === false && localStorage.getItem('token')) {
+        if (filt === false && localStorage.getItem('token')&&fetc===false) {
             // console.log("nfilter");
             getNotes();
+            setFetc(true);
         } else if (filt === true) {
             // console.log("filter");
             filtergetNotes(searchtit.stitle, notes);
         }
-        else {
+        else if(fetc===false){
             navigate('/login');
         }
-    }, [navigate, getNotes, filt, searchtit.stitle, notes, filtergetNotes]);
+    }, [navigate, getNotes, filt, searchtit.stitle, notes, filtergetNotes,fetc]);
 
     useEffect(() => {
         DM = isChecked ? "427D9D" : "11999E";
@@ -55,8 +56,6 @@ const Notes = (props) => {
     const removefilter = (e) => {
         e.preventDefault();
         setFilt(false);
-
-
     }
 
     const updateNote = (note) => {

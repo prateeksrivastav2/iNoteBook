@@ -15,9 +15,20 @@ const Aaddnote = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(note.title, note.description, note.tag);
-    props.showAlert('Note Created', 'info');
-    setNote({ title: '', description: '', tag: '' });
+    if (note.description.length < 10) {
+      props.showAlert('Description must be of 10 characters', 'info');
+    }
+    else if (note.title.length < 5) {
+      props.showAlert('Title must be of 5 characters', 'danger');
+    }
+    else if (note.tag.length < 5) {
+      props.showAlert('Tag must be of 5 characters', 'danger');
+    }
+    else {
+      addNote(note.title, note.description, note.tag);
+      props.showAlert('Note Created', 'info');
+      setNote({ title: '', description: '', tag: '' });
+    }
   };
 
   const onchange = (e) => {
@@ -26,7 +37,7 @@ const Aaddnote = (props) => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <form style={{ width: '80%' ,paddingTop:'15%'}}>
+      <form style={{ width: '80%', paddingTop: '15%' }}>
         <div
           className="f mx-auto"
           style={{
@@ -102,7 +113,7 @@ const Aaddnote = (props) => {
             />
           </div>
           <button
-            disabled={note.description.length < 10 || note.title.length < 5}
+            
             type="submit"
             className="btn btn-primary"
             onClick={handleClick}
